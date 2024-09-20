@@ -1,27 +1,11 @@
-interface PhoneNumberDictionary {
-  [phone: string]: {
-    num: number;
-  };
-}
-
-interface Contact {
-  name: string;
-  address: string;
-  phones: PhoneNumberDictionary;
-}
-
-enum PhoneType {
-  Home = 'home',
-  Office = 'office',
-  Studio = 'studio',
-}
+import {Contact, PhoneType, PhoneNumberDictionary} from './address-book'
 
 // api
 function fetchContacts(): Promise<Contact[]> {
   const contacts: Contact[] = [
     {
-      name: 'Tony',
-      address: 'Malibu',
+      name: "Tony",
+      address: "Malibu",
       phones: {
         home: {
           num: 11122223333,
@@ -32,8 +16,8 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
     {
-      name: 'Banner',
-      address: 'New York',
+      name: "Banner",
+      address: "New York",
       phones: {
         home: {
           num: 77788889999,
@@ -41,8 +25,8 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
     {
-      name: '마동석',
-      address: '서울시 강남구',
+      name: "마동석",
+      address: "서울시 강남구",
       phones: {
         home: {
           num: 213423452,
@@ -53,7 +37,7 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
   ];
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(contacts), 2000);
   });
 }
@@ -78,14 +62,14 @@ class AddressBook {
 
   findContactByAddress(address: string): Contact[] {
     return this.contacts.filter(
-      (contact: Contact) => contact.address === address
+      (contact: Contact) => contact.address === address,
     );
   }
 
   // PhoneType -> home, office, studio
   findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
-      contact => contact.phones[phoneType].num === phoneNumber
+      (contact) => contact.phones[phoneType].num === phoneNumber,
     );
   }
 
@@ -94,11 +78,11 @@ class AddressBook {
   }
 
   displayListByName(): string[] {
-    return this.contacts.map(contact => contact.name);
+    return this.contacts.map((contact) => contact.name);
   }
 
   displayListByAddress(): string[] {
-    return this.contacts.map(contact => contact.address);
+    return this.contacts.map((contact) => contact.address);
   }
 
   /* ------------------------------------------------ */
